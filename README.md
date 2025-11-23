@@ -1,1 +1,1 @@
-# Hackat-n-Nexe
+# Hackaton Nexe Fundacio
