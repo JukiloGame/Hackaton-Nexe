@@ -3,7 +3,7 @@ import './App.css'
 function App() {
   return (
     <>
-      <h1>Hello World</h1> //pagina home
+      <h1 className=' bg-red-600'>Hello World</h1> //pagina home
     </>
   )
 }
