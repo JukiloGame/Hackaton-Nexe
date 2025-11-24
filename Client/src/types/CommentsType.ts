@@ -4,10 +4,10 @@ import type { ActivityInstanceType } from "./ActivityInstance";
 export interface CommentsType {
   Id: number;
   ChildId: number;
-  ActivityInstanceId: number;
+  ActivityInstanceId?: number;
   Text: string;
   CreatedAt: string;
 
-  ActivityInstance: ActivityInstanceType;
+  ActivityInstance?: ActivityInstanceType;
   childDetails: childDetails;
 }
