@@ -1,4 +1,6 @@
 import React from "react";
+import logo from "../../assets/nexe.png";
+
 
 export default function Header() {
   return (
@@ -36,8 +38,7 @@ export default function Header() {
 
       {/* Barra blanca */}
       <nav className="w-full bg-white flex items-center justify-between px-12 py-4 text-[#004B73] font-medium shadow-sm">
-        
-        <img src="/logo.png" alt="Nexe" className="h-12" />
+      <img src={logo} alt="Nexe" className="h-12" />
 
         <ul className="flex items-center gap-10 text-lg">
           <li className="hover:text-orange-500 cursor-pointer">Què és la pluridiscapacitat</li>

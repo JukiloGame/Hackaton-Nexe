@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SearchBar from "../components/searchBar/SearchBar";
-import Header from "../components/header/Header";
-
+import Header from "../components/header/Header";   
+    
 export default function Home() {
   const [query, setQuery] = useState("");
 
