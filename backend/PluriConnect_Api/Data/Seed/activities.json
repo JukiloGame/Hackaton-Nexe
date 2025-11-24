@@ -1,0 +1,37 @@
+[
+  {
+    "Id": 1,
+    "Title": "Taller de Psicomotricidad",
+    "Description": "Sesión guiada de movimiento para mejorar coordinación y autonomía.",
+    "Date": "2025-02-14T17:00:00",
+    "Address": "Centro Nexe - Sala 2"
+  },
+  {
+    "Id": 2,
+    "Title": "Apoyo Escolar",
+    "Description": "Refuerzo académico personalizado con educadores.",
+    "Date": "2025-02-16T18:00:00",
+    "Address": "Centro Nexe - Aula 3"
+  },
+  {
+    "Id": 3,
+    "Title": "Ocio Inclusivo",
+    "Description": "Actividad grupal recreativa adaptada.",
+    "Date": "2025-02-18T10:00:00",
+    "Address": "Parque de la Estación"
+  },
+  {
+    "Id": 4,
+    "Title": "Respiro Familiar",
+    "Description": "Espacio de apoyo mientras las familias descansan.",
+    "Date": "2025-02-20T09:30:00",
+    "Address": "Centro Nexe - Sala Principal"
+  },
+  {
+    "Id": 5,
+    "Title": "Taller Cognitivo",
+    "Description": "Entrenamiento cognitivo con actividades adaptadas.",
+    "Date": "2025-02-22T17:30:00",
+    "Address": "Centro Nexe - Sala 1"
+  }
+]
