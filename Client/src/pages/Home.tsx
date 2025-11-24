@@ -7,7 +7,7 @@ import { useState } from "react";
 export const Home = () => {
   const { data, isLoading, error } = useFetchData<childDetails[]>("/children");
   const [query, setQuery] = useState("");
-  console.log(error);
+  console.log(data);
 
   if (isLoading) {
     return (
