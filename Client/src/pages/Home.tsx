@@ -1,10 +1,10 @@
-
 import { useFetchData } from "../hooks/useFetchData";
 import { ChildList } from "../components/childList/ChildList";
 import { ChildInfo } from "../components/childInfo/ChildInfo";
 import type { childDetails } from "../types/childDetails";
 import SearchBar from "../components/searchBar/SearchBar";
 import { useState } from "react";
+import Comments, { type Comment } from "../components/comments/Comments";
 
 export const Home = () => {
   const { data, isLoading, error } = useFetchData<childDetails[]>("/children");
@@ -13,6 +13,32 @@ export const Home = () => {
   // Role switch: 'profesor' shows all children, 'familia' shows only those with a matching tutorId
   const [role, setRole] = useState<"profesor" | "familia">("profesor");
   const FAKE_TUTOR_ID = 1; // change for testing a different tutor
+
+  // Comentarios organizados por niño
+  const [commentsByChild, setCommentsByChild] = useState<
+    Record<number, Comment[]>
+  >({});
+
+  const handleAddComment = (childId: number, text: string) => {
+    const newComment: Comment = {
+      id: Date.now(),
+      text,
+      date: new Date().toLocaleString(),
+    };
+
+    setCommentsByChild((prev) => ({
+      ...prev,
+      [childId]: [...(prev[childId] || []), newComment],
+    }));
+  };
+
+  // ⭐ ELIMINAR COMENTARIO
+  const handleDeleteComment = (childId: number, commentId: number) => {
+    setCommentsByChild((prev) => ({
+      ...prev,
+      [childId]: prev[childId].filter((c) => c.id !== commentId),
+    }));
+  };
 
   if (isLoading) {
     return (
@@ -38,7 +64,6 @@ export const Home = () => {
     );
   }
 
-  // ⭐ Filtrar por búsqueda
   const filteredChildren = data.filter((child) =>
     `${child.firstName} ${child.lastName}`
       .toLowerCase()
@@ -76,14 +101,11 @@ export const Home = () => {
         </div>
       </div>
 
-      {/* Buscador */}
       <div className="px-12 mb-6">
         <SearchBar value={query} onChange={setQuery} />
       </div>
 
-      {/* Layout con lista y detalle */}
       <div className="flex gap-8 px-12">
-        {/* Lista de niños */}
         <div className="flex-1 max-w-sm">
           {displayedChildren.length === 0 ? (
             <div className="text-gray-600">No hay niños para el rol/tutor seleccionado.</div>
@@ -95,9 +117,20 @@ export const Home = () => {
           )}
         </div>
 
-        {/* Detalle del niño */}
         <div className="flex-1">
-          <ChildInfo childrenData={displayedChildren} selectedId={selectedId} />
+          <ChildInfo childrenData={data} selectedId={selectedId} />
+
+          {selectedId && (
+            <div className="mt-8">
+              <Comments
+                childId={selectedId}
+                activityId={1}
+                comments={commentsByChild[selectedId] || []}
+                onAddComment={handleAddComment}
+                onDeleteComment={handleDeleteComment}
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>
