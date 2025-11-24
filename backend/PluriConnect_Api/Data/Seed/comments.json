@@ -1,0 +1,15 @@
+[
+  { "Id": 1, "ChildId": 1, "ActivityInstanceId": 1, "Text": "Ha participado con mucha energía.", "CreatedAt": "2025-02-14" },
+  { "Id": 2, "ChildId": 1, "ActivityInstanceId": 2, "Text": "Muy buena actitud en el grupo.", "CreatedAt": "2025-02-14" },
+
+  { "Id": 3, "ChildId": 2, "ActivityInstanceId": 3, "Text": "Necesitó apoyo extra en matemáticas.", "CreatedAt": "2025-02-16" },
+
+  { "Id": 4, "ChildId": 3, "ActivityInstanceId": 4, "Text": "Se mostró tranquila y receptiva.", "CreatedAt": "2025-02-17" },
+
+  { "Id": 5, "ChildId": 4, "ActivityInstanceId": 5, "Text": "Gran mejora en control corporal.", "CreatedAt": "2025-02-18" },
+
+  { "Id": 6, "ChildId": 5, "ActivityInstanceId": 6, "Text": "Participó activamente en el taller.", "CreatedAt": "2025-02-19" },
+
+  { "Id": 7, "ChildId": 6, "ActivityInstanceId": 7, "Text": "Se relacionó muy bien con el grupo.", "CreatedAt": "2025-02-20" },
+  { "Id": 8, "ChildId": 6, "ActivityInstanceId": 7, "Text": "Disfrutó especialmente la actividad al aire libre.", "CreatedAt": "2025-02-20" }
+]

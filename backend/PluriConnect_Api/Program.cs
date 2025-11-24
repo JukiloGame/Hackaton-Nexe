@@ -31,6 +31,8 @@ using (var scope = app.Services.CreateScope())
 {
     AppDbContext dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     dbContext.Database.EnsureCreated();
+
+    await SeedLoader.LoadAllJsonAsync(dbContext);
 }
 
 app.MapGet("/", () => "Backend OK!");

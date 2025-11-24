@@ -35,7 +35,16 @@ export const Home = () => {
       <h1 className="text-3xl font-bold text-[#003A5E] mb-6">
         Lista de niños (Test)
       </h1>
+<h1 className="text-3xl font-bold text-[#004B73] mb-6">
+         ¡Bienvenido Profe!
+        </h1>
 
+      <div className="px-12">
+        {/* El buscador va debajo del header */}
+        <SearchBar value={query} onChange={setQuery} />
+
+       
+      </div>
       {/* Comprobamos el componente ChildList */}
       <ChildList childrenData={data} />
     </div>
