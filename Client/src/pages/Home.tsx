@@ -35,7 +35,7 @@ export const Home = () => {
     );
   }
 
-  // ⭐ FILTRO
+  // ⭐ Filtrar por búsqueda
   const filteredChildren = data.filter((child) =>
     `${child.firstName} ${child.lastName}`
       .toLowerCase()
@@ -48,12 +48,26 @@ export const Home = () => {
         ¡Bienvenido Profe!
       </h1>
 
-      <div className="px-12">
+      {/* Buscador */}
+      <div className="px-12 mb-6">
         <SearchBar value={query} onChange={setQuery} />
       </div>
 
-      {/* ⭐ AQUÍ USO EL RESULTADO FILTRADO */}
-      <ChildList childrenData={filteredChildren} />
+      {/* Layout con lista y detalle */}
+      <div className="flex gap-8 px-12">
+        {/* Lista de niños */}
+        <div className="flex-1 max-w-sm">
+          <ChildList
+            childrenData={filteredChildren}
+            onSelect={(id) => setSelectedId(id)}
+          />
+        </div>
+
+        {/* Detalle del niño */}
+        <div className="flex-1">
+          <ChildInfo childrenData={data} selectedId={selectedId} />
+        </div>
+      </div>
     </div>
   );
 };
