@@ -3036,24 +3036,31 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\aimar\\.nuget\\packages\\": {}
+    "C:\\Users\\Jukilo\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\aimar\\Hackaton Nexe\\Hackaton-Nexe\\backend\\PluriConnect_Api\\PluriConnect_Api.csproj",
+      "projectUniqueName": "C:\\Users\\Jukilo\\Desktop\\Hackaton_Nexe\\backend\\PluriConnect_Api\\PluriConnect_Api.csproj",
       "projectName": "PluriConnect_Api",
-      "projectPath": "C:\\Users\\aimar\\Hackaton Nexe\\Hackaton-Nexe\\backend\\PluriConnect_Api\\PluriConnect_Api.csproj",
-      "packagesPath": "C:\\Users\\aimar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\aimar\\Hackaton Nexe\\Hackaton-Nexe\\backend\\PluriConnect_Api\\obj\\",
+      "projectPath": "C:\\Users\\Jukilo\\Desktop\\Hackaton_Nexe\\backend\\PluriConnect_Api\\PluriConnect_Api.csproj",
+      "packagesPath": "C:\\Users\\Jukilo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Jukilo\\Desktop\\Hackaton_Nexe\\backend\\PluriConnect_Api\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\aimar\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Jukilo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
