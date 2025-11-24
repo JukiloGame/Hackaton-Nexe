@@ -1,5 +1,5 @@
 import { useFetchData } from "../hooks/useFetchData";
-import { ChildList } from "../components/childList/ChildList";
+import { ChildList } from "../components/childList/childList";
 import type { childDetails } from "../types/childDetails";
 import SearchBar from "../components/searchBar/SearchBar";
 import { useState } from "react";
@@ -7,7 +7,6 @@ import { useState } from "react";
 export const Home = () => {
   const { data, isLoading, error } = useFetchData<childDetails[]>("/children");
   const [query, setQuery] = useState("");
-  console.log(data);
 
   if (isLoading) {
     return (
@@ -33,6 +32,13 @@ export const Home = () => {
     );
   }
 
+  // ⭐ FILTRO
+  const filteredChildren = data.filter((child) =>
+    `${child.firstName} ${child.lastName}`
+      .toLowerCase()
+      .includes(query.toLowerCase())
+  );
+
   return (
     <div className="p-10 font-nexe">
       <h1 className="text-3xl font-bold text-[#003A5E] mb-6">
@@ -43,11 +49,11 @@ export const Home = () => {
       </h1>
 
       <div className="px-12">
-        {/* El buscador va debajo del header */}
         <SearchBar value={query} onChange={setQuery} />
       </div>
-      {/* Comprobamos el componente ChildList */}
-      <ChildList childrenData={data} />
+
+      {/* ⭐ AQUÍ USO EL RESULTADO FILTRADO */}
+      <ChildList childrenData={filteredChildren} />
     </div>
   );
 };
