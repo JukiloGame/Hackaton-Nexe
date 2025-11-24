@@ -27,9 +27,9 @@ interface ChildListProps {
 
 export const ChildList = ({ childrenData, onSelect }: ChildListProps) => {
   return (
-    // 🔥 CENTRA TODA LA LISTA EN LA PANTALLA
-    <div className="w-full flex justify-center">
-      {/* 🔥 CONTENEDOR CON SCROLL INTERNO */}
+    // CENTRA TODA LA LISTA EN LA PANTALLA
+    <div>
+      {/* CONTENEDOR CON SCROLL INTERNO */}
       <div
         className="w-full max-w-sm flex flex-col gap-4 font-nexe 
                       max-h-[500px] overflow-y-auto pr-2"

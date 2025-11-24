@@ -1,15 +1,41 @@
-
 import { useFetchData } from "../hooks/useFetchData";
 import { ChildList } from "../components/childList/ChildList";
 import { ChildInfo } from "../components/childInfo/ChildInfo";
 import type { childDetails } from "../types/childDetails";
 import SearchBar from "../components/searchBar/SearchBar";
 import { useState } from "react";
+import Comments, { type Comment } from "../components/comments/Comments";
 
 export const Home = () => {
   const { data, isLoading, error } = useFetchData<childDetails[]>("/children");
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState<number | null>(null);
+
+  // Comentarios organizados por niño
+  const [commentsByChild, setCommentsByChild] = useState<
+    Record<number, Comment[]>
+  >({});
+
+  const handleAddComment = (childId: number, text: string) => {
+    const newComment: Comment = {
+      id: Date.now(),
+      text,
+      date: new Date().toLocaleString(),
+    };
+
+    setCommentsByChild((prev) => ({
+      ...prev,
+      [childId]: [...(prev[childId] || []), newComment],
+    }));
+  };
+
+  // ⭐ ELIMINAR COMENTARIO
+  const handleDeleteComment = (childId: number, commentId: number) => {
+    setCommentsByChild((prev) => ({
+      ...prev,
+      [childId]: prev[childId].filter((c) => c.id !== commentId),
+    }));
+  };
 
   if (isLoading) {
     return (
@@ -35,7 +61,6 @@ export const Home = () => {
     );
   }
 
-  // ⭐ Filtrar por búsqueda
   const filteredChildren = data.filter((child) =>
     `${child.firstName} ${child.lastName}`
       .toLowerCase()
@@ -48,14 +73,11 @@ export const Home = () => {
         ¡Bienvenido Profe!
       </h1>
 
-      {/* Buscador */}
       <div className="px-12 mb-6">
         <SearchBar value={query} onChange={setQuery} />
       </div>
 
-      {/* Layout con lista y detalle */}
       <div className="flex gap-8 px-12">
-        {/* Lista de niños */}
         <div className="flex-1 max-w-sm">
           <ChildList
             childrenData={filteredChildren}
@@ -63,9 +85,20 @@ export const Home = () => {
           />
         </div>
 
-        {/* Detalle del niño */}
         <div className="flex-1">
           <ChildInfo childrenData={data} selectedId={selectedId} />
+
+          {selectedId && (
+            <div className="mt-8">
+              <Comments
+                childId={selectedId}
+                activityId={1}
+                comments={commentsByChild[selectedId] || []}
+                onAddComment={handleAddComment}
+                onDeleteComment={handleDeleteComment}
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>
