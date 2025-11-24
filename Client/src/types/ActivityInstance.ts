@@ -10,5 +10,5 @@ export interface ActivityInstanceType {
 
   Activity: ActivityDetailsType;
   Child: childDetails;
-  Comments: Comment[];
+  Comments?: Comment[];
 }
