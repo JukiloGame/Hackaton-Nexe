@@ -12,7 +12,6 @@ export const Home = () => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   // Role switch: 'profesor' shows all children, 'familia' shows only those with a matching tutorId
   const [role, setRole] = useState<"profesor" | "familia">("profesor");
-  const FAKE_TUTOR_ID = 1; // change for testing a different tutor
 
   // Comentarios organizados por niño
   const [commentsByChild, setCommentsByChild] = useState<
@@ -118,7 +117,7 @@ export const Home = () => {
         </div>
 
         <div className="flex-1">
-          <ChildInfo childrenData={data} selectedId={selectedId} />
+          <ChildInfo childrenData={data} selectedId={selectedId} role={role} />
 
           {selectedId && (
             <div className="mt-8">
@@ -128,6 +127,7 @@ export const Home = () => {
                 comments={commentsByChild[selectedId] || []}
                 onAddComment={handleAddComment}
                 onDeleteComment={handleDeleteComment}
+                role={role}
               />
             </div>
           )}
