@@ -1,5 +1,5 @@
 import { useFetchData } from "../hooks/useFetchData";
-import { ChildList } from "../components/childList/childList";
+import { ChildList } from "../components/childList/ChildList";
 import type { childDetails } from "../types/childDetails";
 import SearchBar from "../components/searchBar/SearchBar";
 import { useState } from "react";
