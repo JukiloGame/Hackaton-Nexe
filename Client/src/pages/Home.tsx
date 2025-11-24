@@ -1,9 +1,12 @@
 import { useFetchData } from "../hooks/useFetchData";
 import { ChildList } from "../components/childList/ChildList";
 import type { childDetails } from "../types/childDetails";
+import SearchBar from "../components/searchBar/SearchBar";
+import { useState } from "react";
 
 export const Home = () => {
   const { data, isLoading, error } = useFetchData<childDetails[]>("/children");
+  const [query, setQuery] = useState("");
   console.log(error);
 
   if (isLoading) {
@@ -35,15 +38,13 @@ export const Home = () => {
       <h1 className="text-3xl font-bold text-[#003A5E] mb-6">
         Lista de niños (Test)
       </h1>
-<h1 className="text-3xl font-bold text-[#004B73] mb-6">
-         ¡Bienvenido Profe!
-        </h1>
+      <h1 className="text-3xl font-bold text-[#004B73] mb-6">
+        ¡Bienvenido Profe!
+      </h1>
 
       <div className="px-12">
         {/* El buscador va debajo del header */}
         <SearchBar value={query} onChange={setQuery} />
-
-       
       </div>
       {/* Comprobamos el componente ChildList */}
       <ChildList childrenData={data} />
