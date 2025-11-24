@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using PluriConnect_Api.Database;
 
+namespace PluriConnect_Api.Services;
+
 public class GenericService<T> where T : class
 {
 	private readonly AppDbContext _context;
