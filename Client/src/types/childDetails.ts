@@ -1,7 +1,7 @@
 export interface childDetails {
   id: number;
-  TutorId: number;
-  firstname: string;
-  lastname: string;
-  birthdate: string;
+  tutorId: number;
+  firstName: string;
+  lastName: string;
+  birthDate: string;
 }
