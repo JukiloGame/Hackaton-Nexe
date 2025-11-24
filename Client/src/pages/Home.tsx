@@ -12,7 +12,6 @@ export const Home = () => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   // Role switch: 'profesor' shows all children, 'familia' shows only those with a matching tutorId
   const [role, setRole] = useState<"profesor" | "familia">("profesor");
-  const FAKE_TUTOR_ID = 1; // change for testing a different tutor
 
   // Comentarios organizados por niño
   const [commentsByChild, setCommentsByChild] = useState<
@@ -82,7 +81,7 @@ export const Home = () => {
     <div className="p-10 font-nexe">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-3xl font-bold text-[#004B73]">
-          {role === "profesor" ? "¡Bienvenido Profe!" : "Vista Familia"}
+          {role === "profesor" ? "¡Bienvenido Profe!" : "Vista de la Familia Soler"}
         </h1>
 
         <div className="flex items-center gap-3">
@@ -118,7 +117,7 @@ export const Home = () => {
         </div>
 
         <div className="flex-1">
-          <ChildInfo childrenData={data} selectedId={selectedId} />
+          <ChildInfo childrenData={data} selectedId={selectedId} role={role} />
 
           {selectedId && (
             <div className="mt-8">
@@ -128,6 +127,7 @@ export const Home = () => {
                 comments={commentsByChild[selectedId] || []}
                 onAddComment={handleAddComment}
                 onDeleteComment={handleDeleteComment}
+                role={role}
               />
             </div>
           )}

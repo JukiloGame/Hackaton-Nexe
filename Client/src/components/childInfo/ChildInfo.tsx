@@ -46,6 +46,7 @@ const UserIcon = () => (
 interface ChildInfoProps {
   childrenData: childDetails[];
   selectedId: number | null;
+  role?: "profesor" | "familia";
 }
 
 // ---------------------------------------------
@@ -54,6 +55,7 @@ interface ChildInfoProps {
 export const ChildInfo: React.FC<ChildInfoProps> = ({
   childrenData,
   selectedId,
+  role = "profesor",
 }) => {
   const child = childrenData.find((c) => c.id === selectedId);
 
@@ -135,30 +137,30 @@ export const ChildInfo: React.FC<ChildInfoProps> = ({
         </p>
       </div>
 
-      {/* ACTIVIDADES ASIGNADAS */}
+      {/* ACTIVIDADES ASIGNADAS (solo lectura para familia) */}
       <ActivityList
         activities={assignedActivities}
         title="Actividades asignadas"
-        showRemoveButton
-        onRemove={handleRemoveActivity}
+        showRemoveButton={role === "profesor"}
+        onRemove={role === "profesor" ? handleRemoveActivity : undefined}
       />
 
-      {/* BOTÓN + / – PARA MOSTRAR DISPONIBLES */}
-      <button
-        className="mt-4 mb-2 w-full flex items-center justify-center gap-2 px-4 py-2 bg-[#003A5E] text-white rounded-lg hover:bg-[#004a7a]"
-        onClick={() => setShowAvailable(!showAvailable)}
-      >
-        {showAvailable ? "–" : "+"} Actividades disponibles
-      </button>
-
-      {/* LISTA DE ACTIVIDADES DISPONIBLES (ocultable) */}
-      {showAvailable && (
-        <ActivityList
-          activities={availableActivities}
-          showAddButton
-          onAdd={handleAddActivity}
-        />
-      )}
+      {/* Solo el profesor puede añadir actividades */}
+      {role === "profesor" && <>
+        <button
+          className="mt-4 mb-2 w-full flex items-center justify-center gap-2 px-4 py-2 bg-[#003A5E] text-white rounded-lg hover:bg-[#004a7a]"
+          onClick={() => setShowAvailable(!showAvailable)}
+        >
+          {showAvailable ? "–" : "+"} Actividades disponibles
+        </button>
+        {showAvailable && (
+          <ActivityList
+            activities={availableActivities}
+            showAddButton
+            onAdd={handleAddActivity}
+          />
+        )}
+      </>}
     </div>
   );
 };
