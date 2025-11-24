@@ -44,12 +44,12 @@ export const ChildList = ({ childrenData, onSelect }: ChildListProps) => {
 
           <div className="flex flex-col">
             <span className="text-lg font-semibold text-[#003A5E]">
-              {child.firstname} {child.lastname}
+              {child.firstName} {child.lastName}
             </span>
 
             <span className="text-sm text-gray-500">
-              {child.birthdate
-                ? new Date(child.birthdate).toLocaleDateString()
+              {child.birthDate
+                ? new Date(child.birthDate).toLocaleDateString()
                 : "Fecha desconocida"}
             </span>
           </div>
