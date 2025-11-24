@@ -81,7 +81,7 @@ export const Home = () => {
     <div className="p-10 font-nexe">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-3xl font-bold text-[#004B73]">
-          {role === "profesor" ? "¡Bienvenido Profe!" : "Vista Familia"}
+          {role === "profesor" ? "¡Bienvenido Profe!" : "Vista de la Familia Soler"}
         </h1>
 
         <div className="flex items-center gap-3">
