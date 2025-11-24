@@ -35,7 +35,8 @@ export const Home = () => {
     );
   }
 
-  const filteredData = data.filter((child) =>
+  // ⭐ FILTRO
+  const filteredChildren = data.filter((child) =>
     `${child.firstName} ${child.lastName}`
       .toLowerCase()
       .includes(query.toLowerCase())
@@ -47,21 +48,12 @@ export const Home = () => {
         ¡Bienvenido Profe!
       </h1>
 
-      <div className="px-12 mb-6">
+      <div className="px-12">
         <SearchBar value={query} onChange={setQuery} />
       </div>
 
-      <div className="flex gap-8 px-12">
-        {/* Lista de niños */}
-        <div className="flex-1 max-w-sm">
-          <ChildList childrenData={filteredData} onSelect={setSelectedId} />
-        </div>
-
-        {/* Detalle del niño */}
-        <div className="flex-1">
-          <ChildInfo childrenData={data} selectedId={selectedId} />
-        </div>
-      </div>
+      {/* ⭐ AQUÍ USO EL RESULTADO FILTRADO */}
+      <ChildList childrenData={filteredChildren} />
     </div>
   );
 };

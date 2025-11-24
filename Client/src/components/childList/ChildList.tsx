@@ -27,34 +27,41 @@ interface ChildListProps {
 
 export const ChildList = ({ childrenData, onSelect }: ChildListProps) => {
   return (
-    <div className="w-full max-w-sm flex flex-col gap-4 font-nexe">
-      {childrenData.map((child) => (
-        <div
-          key={child.id}
-          onClick={() => onSelect?.(child.id)}
-          className="
-            flex items-center gap-4 p-4 
-            bg-white rounded-xl shadow-sm 
-            border-l-4 border-[#003A5E] 
-            hover:shadow-lg hover:border-[#FF7A00] 
-            transition-all cursor-pointer
-          "
-        >
-          <UserIcon />
+    // 🔥 CENTRA TODA LA LISTA EN LA PANTALLA
+    <div className="w-full flex justify-center">
+      {/* 🔥 CONTENEDOR CON SCROLL INTERNO */}
+      <div
+        className="w-full max-w-sm flex flex-col gap-4 font-nexe 
+                      max-h-[500px] overflow-y-auto pr-2"
+      >
+        {childrenData.map((child) => (
+          <div
+            key={child.id}
+            onClick={() => onSelect?.(child.id)}
+            className="
+              flex items-center gap-4 p-4 
+              bg-white rounded-xl shadow-sm 
+              border-l-4 border-[#003A5E] 
+              hover:shadow-lg hover:border-[#FF7A00] 
+              transition-all cursor-pointer
+            "
+          >
+            <UserIcon />
 
-          <div className="flex flex-col">
-            <span className="text-lg font-semibold text-[#003A5E]">
-              {child.firstName} {child.lastName}
-            </span>
+            <div className="flex flex-col">
+              <span className="text-lg font-semibold text-[#003A5E]">
+                {child.firstName} {child.lastName}
+              </span>
 
-            <span className="text-sm text-gray-500">
-              {child.birthDate
-                ? new Date(child.birthDate).toLocaleDateString()
-                : "Fecha desconocida"}
-            </span>
+              <span className="text-sm text-gray-500">
+                {child.birthDate
+                  ? new Date(child.birthDate).toLocaleDateString()
+                  : "Fecha desconocida"}
+              </span>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
