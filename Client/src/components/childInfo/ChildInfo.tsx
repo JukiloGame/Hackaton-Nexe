@@ -1,13 +1,9 @@
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import type { childDetails } from "../../types/childDetails";
 
-interface ChildInfoProps {
-  childrenList: childDetails[];
-}
-
 const UserIcon = () => (
-  <div className="h-14 w-14 flex items-center justify-center bg-gray-100 rounded-lg border border-gray-300">
+  <div className="h-16 w-16 flex items-center justify-center bg-gray-100 rounded-lg border border-gray-300">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="#003A5E"
@@ -25,71 +21,53 @@ const UserIcon = () => (
   </div>
 );
 
-export const ChildInfo: React.FC<ChildInfoProps> = ({ childrenList }) => {
-  const [selectedChild, setSelectedChild] = useState<childDetails | null>(null);
+interface ChildInfoProps {
+  childrenData: childDetails[];
+  selectedId: number | null;
+}
 
-  useEffect(() => {
-    if (childrenList.length > 0) {
-      setSelectedChild(childrenList[0]);
-    }
-  }, [childrenList]);
+export const ChildInfo: React.FC<ChildInfoProps> = ({
+  childrenData,
+  selectedId,
+}) => {
+  const child = childrenData.find((c) => c.id === selectedId);
+
+  if (!child) {
+    return (
+      <div className="p-6 text-gray-500 font-nexe">
+        Selecciona un niño para ver los detalles
+      </div>
+    );
+  }
 
   return (
-    <div className="flex gap-6">
-      {/* Lista de niños */}
-      <div className="w-64 border-r border-gray-300">
-        <h3 className="text-lg font-semibold mb-4">Buscar niño...</h3>
-        <div className="space-y-2">
-          {childrenList.map((child) => (
-            <div
-              key={child.id}
-              onClick={() => setSelectedChild(child)}
-              className={`flex items-center gap-3 p-2 cursor-pointer rounded-md ${
-                selectedChild?.id === child.id ? "bg-gray-100" : "hover:bg-gray-50"
-              }`}
-            >
-              <UserIcon />
-              <span className="font-medium">
-                {child.nombre} {child.apellido}
-              </span>
-            </div>
-          ))}
+    <div className="w-full max-w-lg p-6 bg-white rounded-xl shadow-sm border font-nexe">
+      <div className="flex items-center gap-6 mb-6">
+        <UserIcon />
+        <div>
+          {/* Nombre y apellidos */}
+          <h2 className="text-xl font-bold text-[#003A5E]">
+            {child.firstName} {child.lastName}
+          </h2>
+          {/* Fecha de nacimiento */}
+          <p className="text-gray-600 text-sm">
+            Fecha de nacimiento:{" "}
+            {child.birthDate
+              ? new Date(child.birthDate).toLocaleDateString()
+              : "Desconocida"}
+          </p>
         </div>
       </div>
 
-      {/* Detalle del niño */}
-      <div className="flex-1">
-        {selectedChild ? (
-          <div className="p-4 border rounded-lg shadow-sm bg-white">
-            <div className="flex items-center gap-4 mb-4">
-              {/* Imagen del niño o ícono */}
-              {selectedChild.imageUrl ? (
-                <img
-                  src={selectedChild.imageUrl}
-                  alt={`${selectedChild.nombre} ${selectedChild.apellido}`}
-                  className="h-20 w-20 rounded-lg object-cover border"
-                />
-              ) : (
-                <UserIcon />
-              )}
-              <div>
-                <h2 className="text-xl font-bold">
-                  {selectedChild.nombre} {selectedChild.apellido}
-                </h2>
-                <p className="text-gray-600">ID: {selectedChild.id}</p>
-              </div>
-            </div>
-
-            <p className="mb-2">
-              <strong>Tutor ID:</strong> {selectedChild.tutorId}
-            </p>
-            <p className="mb-2">
-              <strong>Fecha de nacimiento:</strong> {selectedChild.dob}
-            </p>
-          </div>
-        ) : (
-          <p className="text-gray-500">Selecciona un niño para ver los detalles</p>
-        )}
+      {/* ID y Tutor ID */}
+      <div className="space-y-2 text-gray-700">
+        <p>
+          <span className="font-semibold text-[#003A5E]">ID:</span> {child.id}
+        </p>
+        <p>
+          <span className="font-semibold text-[#003A5E]">Tutor ID:</span>{" "}
+          {child.tutorId}
+        </p>
       </div>
     </div>
   );

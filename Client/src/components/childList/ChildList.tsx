@@ -1,13 +1,6 @@
-
-import React from "react";
 import type { childDetails } from "../../types/childDetails";
 
-interface ChildListProps {
-  childrenList: childDetails[];
-  selectedChildId: number | null;
-  onSelectChild: (child: childDetails) => void;
-}
-
+// Icono de usuario genérico
 const UserIcon = () => (
   <div className="h-14 w-14 flex items-center justify-center bg-gray-100 rounded-lg border border-gray-300">
     <svg
@@ -27,39 +20,41 @@ const UserIcon = () => (
   </div>
 );
 
-export const ChildList: React.FC<ChildListProps> = ({
-  childrenList,
-  selectedChildId,
-  onSelectChild,
-}) => {
+interface ChildListProps {
+  childrenData: childDetails[];
+  onSelect?: (id: number) => void;
+}
+
+export const ChildList = ({ childrenData, onSelect }: ChildListProps) => {
   return (
-    <div className="w-64 border-r border-gray-300">
-      <h3 className="text-lg font-semibold mb-4">Buscar niño...</h3>
-      <div className="space-y-2">
-        {childrenList.map((child) => (
-          <div
-            key={child.id}
-            onClick={() => onSelectChild(child)}
-            className={`flex items-center gap-3 p-2 cursor-pointer rounded-md ${
-              selectedChildId === child.id ? "bg-gray-100" : "hover:bg-gray-50"
-            }`}
-          >
-            {/* Imagen o ícono */}
-            {child.imageUrl ? (
-              <img
-                src={child.imageUrl}
-                alt={`${child.nombre} ${child.apellido}`}
-                className="h-14 w-14 rounded-lg object-cover border"
-              />
-            ) : (
-              <UserIcon />
-            )}
-            <span className="font-medium">
-              {child.nombre} {child.apellido}
+    <div className="w-full max-w-sm flex flex-col gap-4 font-nexe">
+      {childrenData.map((child) => (
+        <div
+          key={child.id}
+          onClick={() => onSelect?.(child.id)}
+          className="
+            flex items-center gap-4 p-4 
+            bg-white rounded-xl shadow-sm 
+            border-l-4 border-[#003A5E] 
+            hover:shadow-lg hover:border-[#FF7A00] 
+            transition-all cursor-pointer
+          "
+        >
+          <UserIcon />
+
+          <div className="flex flex-col">
+            <span className="text-lg font-semibold text-[#003A5E]">
+              {child.firstName} {child.lastName}
+            </span>
+
+            <span className="text-sm text-gray-500">
+              {child.birthDate
+                ? new Date(child.birthDate).toLocaleDateString()
+                : "Fecha desconocida"}
             </span>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 };
