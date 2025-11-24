@@ -1,0 +1,14 @@
+[
+  { "Id": 1, "ChildId": 1, "ActivityId": 1, "AssignedAt": "2025-02-10", "IsAuthorized": 1, "AuthorizedAt": "2025-02-11" },
+  { "Id": 2, "ChildId": 1, "ActivityId": 3, "AssignedAt": "2025-02-12", "IsAuthorized": 1, "AuthorizedAt": "2025-02-13" },
+
+  { "Id": 3, "ChildId": 2, "ActivityId": 2, "AssignedAt": "2025-02-10", "IsAuthorized": 1, "AuthorizedAt": "2025-02-12" },
+
+  { "Id": 4, "ChildId": 3, "ActivityId": 4, "AssignedAt": "2025-02-11", "IsAuthorized": 0, "AuthorizedAt": null },
+
+  { "Id": 5, "ChildId": 4, "ActivityId": 1, "AssignedAt": "2025-02-15", "IsAuthorized": 1, "AuthorizedAt": "2025-02-16" },
+
+  { "Id": 6, "ChildId": 5, "ActivityId": 5, "AssignedAt": "2025-02-14", "IsAuthorized": 1, "AuthorizedAt": "2025-02-15" },
+
+  { "Id": 7, "ChildId": 6, "ActivityId": 3, "AssignedAt": "2025-02-13", "IsAuthorized": 1, "AuthorizedAt": "2025-02-14" }
+]
