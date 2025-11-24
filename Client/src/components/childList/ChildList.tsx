@@ -22,7 +22,7 @@ const UserIcon = () => (
 
 interface ChildListProps {
   childrenData: childDetails[];
-  onSelect?: (Id: number) => void;
+  onSelect?: (id: number) => void;
 }
 
 export const ChildList = ({ childrenData, onSelect }: ChildListProps) => {
@@ -30,8 +30,8 @@ export const ChildList = ({ childrenData, onSelect }: ChildListProps) => {
     <div className="w-full max-w-sm flex flex-col gap-4 font-nexe">
       {childrenData.map((child) => (
         <div
-          key={child.Id}
-          onClick={() => onSelect?.(child.Id)}
+          key={child.id}
+          onClick={() => onSelect?.(child.id)}
           className="
             flex items-center gap-4 p-4 
             bg-white rounded-xl shadow-sm 
@@ -44,12 +44,12 @@ export const ChildList = ({ childrenData, onSelect }: ChildListProps) => {
 
           <div className="flex flex-col">
             <span className="text-lg font-semibold text-[#003A5E]">
-              {child.FirstName} {child.LastName}
+              {child.firstname} {child.lastname}
             </span>
 
             <span className="text-sm text-gray-500">
-              {child.BirthDate
-                ? new Date(child.BirthDate).toLocaleDateString()
+              {child.birthdate
+                ? new Date(child.birthdate).toLocaleDateString()
                 : "Fecha desconocida"}
             </span>
           </div>
