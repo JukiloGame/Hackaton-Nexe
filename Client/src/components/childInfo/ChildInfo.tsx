@@ -22,6 +22,15 @@ const mockActivities = [
 }));
 
 // ---------------------------------------------
+// CONTACTOS MOCK (tutores)
+// ---------------------------------------------
+const mockTutors = [
+  { id: 1, name: "María López", phone: "+34 600 123 456", email: "maria.lopez@example.com" },
+  { id: 2, name: "Juan Pérez", phone: "+34 622 987 654", email: "juan.perez@example.com" },
+  { id: 101, name: "Ana Gómez", phone: "+34 688 111 222", email: "ana.gomez@example.com" },
+];
+
+// ---------------------------------------------
 // ICONO
 // ---------------------------------------------
 const UserIcon = () => (
@@ -135,6 +144,19 @@ export const ChildInfo: React.FC<ChildInfoProps> = ({
           <span className="font-semibold text-[#003A5E]">Tutor ID:</span>{" "}
           {child.tutorId}
         </p>
+        {/* Información de contacto del tutor (mock) */}
+        {(() => {
+          const tutor = mockTutors.find(t => t.id === child.tutorId);
+          if (!tutor) return null;
+          return (
+            <div className="mt-3 p-3 bg-gray-50 border rounded">
+              <div className="font-semibold text-[#003A5E]">Contacto tutor</div>
+              <div className="text-sm text-gray-700">{tutor.name}</div>
+              <div className="text-sm text-gray-600">Tel: <a className="text-blue-600" href={`tel:${tutor.phone.replace(/\s+/g,'')}`}>{tutor.phone}</a></div>
+              <div className="text-sm text-gray-600">Email: <a className="text-blue-600" href={`mailto:${tutor.email}`}>{tutor.email}</a></div>
+            </div>
+          );
+        })()}
       </div>
 
       {/* ACTIVIDADES ASIGNADAS (solo lectura para familia) */}
